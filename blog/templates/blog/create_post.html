@@ -1,0 +1,53 @@
+{% extends 'blog/posts.html' %}
+
+{% block header %} 
+<ul class="d-flex flex-row align-items-start justify-content-start">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'profile' %}">Profile</a></li>
+    <li class="active"><a href="#">Create Post</a></li>
+    <li><a href="{% url 'signout' %}">Sign out</a></li>
+</ul>
+{% endblock %}
+
+{% block posts %} 
+<!-- Create post form -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="whole">
+                <form method="post" autocomplete="off">
+                    {% csrf_token %}
+                    <h3 class="text-center" style="color: #760005; padding-top:30px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-weight:bolder"> Create Post </h3>                          
+                        
+                    <div class="postForm ">
+                        <div class="topd">
+                            <label for="title">Post title <small style="color: red;">*</small></label>
+                            <br>
+                            <input class="myInput" type="text" name="title" id="title" value="" required/>
+                        </div>
+
+                        <div class="topd">
+                            <label for="subtitle">Intro <small style="color: red;">*</small></label><br>
+                            <input class="myInput" type="text" name="subtitle" id="subtitle" value="" required/>
+                        </div>
+
+                        <div class="topd">
+                            <label for="body">Body <small style="color: red;">*</small></label><br/>
+                            <textarea class="myText" name="body" id="body" required></textarea>
+                        </div>
+                        <button type="submit" class="postBtn">
+                            Post
+                        </button>
+                        {% for field in report_form %}
+                            {% for error in field.errors %}
+                                <small style="color: red">{{ error }}</small>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

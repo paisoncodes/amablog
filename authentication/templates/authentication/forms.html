@@ -1,0 +1,110 @@
+{% load static %}
+<style type="text/css">
+    .limiter {
+        background-image: url("{% static 'authentication/img/home_image.jpg' %}");
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        width: 100%;
+        max-height: 100%;
+		position: absolute;
+    }
+    
+    .blur {
+        backdrop-filter: blur(8px);
+        height: 100%;
+        width: 100%;
+    }
+
+    .container {
+        display: block;
+        margin-top: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .container section {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%)
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% block auth_title %}
+		{% endblock %}
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+		
+		<link rel="icon" type="image/x-icon" href="{% static 'web/assets/favicon.ico' %}" />
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'authentication/vendor/bootstrap/css/bootstrap.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'authentication/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'authentication/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'authentication/vendor/animate/animate.css' %}">
+	<!--===============================================================================================-->	
+		<link rel="stylesheet" type="text/css" href="{% static 'authentication/vendor/css-hamburgers/hamburgers.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'authentication/vendor/animsition/css/animsition.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'authentication/vendor/select2/select2.min.css' %}">
+	<!--===============================================================================================-->	
+		<link rel="stylesheet" type="text/css" href="{% static 'authentication/vendor/daterangepicker/daterangepicker.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'authentication/css/util.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'authentication/css/main.css' %}">
+	<!--===============================================================================================-->
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+	<!--===============================================================================================-->
+	</head>
+	<body>
+		
+		<div class="limiter">
+			<div class="blur">
+				<div class="container-login100">
+					<div class="wrap-login100">
+						<form method="post" class="login100-form validate-form" autocomplete="off">
+							{% csrf_token %}
+							<span class="login100-form-logo">
+								<a href="{% url 'home' %}" class="logo"><img class="image-fluid mx-auto d-block" src="{% static 'authentication/img/blog_logo.png' %}" alt="" width="50" height="50"></a>
+							</span>
+
+							{% block auth %}
+					
+							{% endblock %}
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<div id="dropDownSelect1"></div>
+		
+	<!--===============================================================================================-->
+		<script src="{% static 'authentication/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'authentication/vendor/animsition/js/animsition.min.js' %}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'authentication/vendor/bootstrap/js/popper.js' %}"></script>
+		<script src="{% static 'authentication/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'authentication/vendor/select2/select2.min.js' %}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'authentication/vendor/daterangepicker/moment.min.js' %}"></script>
+		<script src="{% static 'authentication/vendor/daterangepicker/daterangepicker.js' %}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'authentication/vendor/countdowntime/countdowntime.js' %}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'authentication/js/main.js' %}"></script>
+
+
+	</body>
+</html>

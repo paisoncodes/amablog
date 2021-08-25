@@ -1,0 +1,26 @@
+{% extends 'authentication/forms.html' %}
+
+{% load static %}
+
+{% block auth_title %}
+    <title> Verification </title>
+{% endblock %}
+
+
+{% block auth %}
+<!-- Sign up form -->
+<span class="login100-form-title p-b-34 p-t-20">
+    OTP Verification
+</span>
+
+<div class="wrap-input100 validate-input" data-validate="Enter password">
+    <input class="input100" type="text" name="number" placeholder="Enter OTP" autocomplete="off">
+    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+</div>
+
+<div class="container-login100-form-btn">
+    <button class="login100-form-btn" type="submit">
+        Continue
+    </button>
+</div>
+{% endblock %}

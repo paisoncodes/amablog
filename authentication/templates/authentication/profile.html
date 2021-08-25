@@ -1,0 +1,160 @@
+{% load static %}
+
+
+<style type="text/css">
+    .header_content {
+	width: 100%;
+	height: 148px;
+    }
+
+    .logo {
+        font-size: 60px; 
+        display: -profilekit-box;
+        display: -profilekit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #ffffff;
+    }
+
+    .arrow {
+        border: solid #760005;
+        border-width: 0px 3px 3px 0px;
+        display: inline-block;
+        padding: 3px;
+        padding-left: 8px;
+        padding-bottom: 8px;
+        margin-bottom: 1px;
+    }
+
+    .right {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+
+    span a{
+        display:inline-block;
+        height: 30px
+
+    }
+
+    a h4{
+        text-decoration: none;
+        color: #760005;
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'profile/assets/favicon.ico' %}" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'profile/css/styles.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'profile/plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/plugins/OwlCarousel2-2.2.1/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/styles/main_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/styles/responsive.css' %}">
+</head>
+<body>
+    <div class="super_container">
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                            <div class="header_content_inner d-flex flex-row align-items-center justify-content-start">
+                                <div class="logo"><a href="{% url 'home' %}"><img class="image-fluid mx-auto d-block" src="{% static 'authentication/img/blog_logo.png' %}" alt="" width="50" height="50"></a></div>
+                                <nav class="main_nav">
+                                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                                        <li><a href="{% url 'home' %}">Home</a></li>
+                                        <li class="active"><a href="#">Profile</a></li>
+                                        <li><a href="{% url 'blog:create' %}">Create Post</a></li>
+                                        <li><a href="{% url 'signout' %}">Sign out</a></li>
+                                    </ul>
+                                </nav>
+
+                                <!-- Hamburger -->
+                                {% include 'snippets/hamburger.html' %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Menu -->
+        {% include 'snippets/menu.html' %}
+
+        <!-- Body -->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    {% if user.is_authenticated %}
+                    <h4 style="padding-top: 30; color:black; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Welcome, </h4>
+                    <h2 style="color: #760005; padding-left:30; padding-top: 15; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"> {{ user.username| title }}</h2>
+                    <p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:black; padding-top:10px"> Email: {{user.email}}</p>
+                    {% endif %}
+                </div>  
+                <div class="posts" style="padding-top: 80px;">
+                    <h4 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"> Your Posts </h4>
+                    <!-- Divider -->
+                    <hr class="my-4" />
+                    {% if posts %}
+                    {% for post in posts %}
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <span><i class="arrow right"></i><a href="{% url 'blog:posts' %}">
+                            <h4 class="post-title" style="padding-left: 40px; bottom: 0; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{post.title}}</h4>
+                        </a></span>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    {% endfor %}
+                    {% else %} 
+                    <h5 class='d-flex flex-column mx-2 my-3 align-items-center'>You have no posts yet  <a href="{% url 'blog:create' %}">Create</a></h5>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    {% endif %}
+                </div>              
+            </div>
+        </div>
+    </div>
+    {% include 'snippets/footer.html' %}
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{% static 'profile/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'profile/styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'profile/styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'profile/plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'profile/plugins/Isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'profile/plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
+    <script src="{% static 'profile/plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'profile/plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src="{% static 'profile/js/custom.js' %}"></script>
+</body>
+</html>
+
+<style>
+    
+</style>
+
+

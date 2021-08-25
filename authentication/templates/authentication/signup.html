@@ -1,0 +1,66 @@
+{% extends 'authentication/forms.html' %}
+
+{% load static %}
+
+{% block auth_title %}
+    <title> Sign Up </title>
+{% endblock %}
+
+
+{% block auth %}
+<!-- Sign up form -->
+<span class="login100-form-title p-b-34 p-t-20">
+    Sign Up
+</span>
+
+<div class="wrap-input100 validate-input" data-validate="Enter E-mail">
+    <input class="input100" type="email" name="email" placeholder="E-mail">
+    <span class="focus-input100" data-placeholder="&#x2709;"></span>
+</div>
+
+<div class="wrap-input100 validate-input" data-validate = "Enter Username">
+    <input class="input100" type="text" name="username" placeholder="Username">
+    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+</div>
+
+<div class="wrap-input100 validate-input" data-validate="Confirm password">
+    <input class="input100" type="text" name="phone_number" placeholder="Phone number with country code">
+    <span class="focus-input100" data-placeholder="&#xf2b9;"></span>
+</div>
+
+<div class="wrap-input100 validate-input" data-validate="Enter password">
+    <input class="input100" type="password" name="password1" placeholder="Password">
+    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+</div>
+
+<div class="wrap-input100 validate-input" data-validate="Confirm password">
+    <input class="input100" type="password" name="password2" placeholder="Confirm Password">
+    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+</div>
+
+
+{% for field in registration_form %}
+    <p>
+    {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    </p>
+{% endfor %}
+{% if registration_form.non_field_errors %}
+    <div style="color: red">
+    <p>{{registration_form.non_field_errors}}</p>
+    </div>
+{% endif %}
+
+<div class="container-login100-form-btn">
+    <button class="login100-form-btn" type="submit">
+        Register
+    </button>
+</div>
+
+<div class="text-center p-t-15">
+    <a href="{% url 'signin' %}" class="signup-image-link">
+        I have an account
+    </a>
+</div>
+{% endblock %}

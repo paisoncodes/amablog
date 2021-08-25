@@ -1,0 +1,12 @@
+.env
+db.sqlite3
+Pipfile*
+.Python
+*.sqlite3
+.idea/
+.idea
+*.py[cod]
+*$py.class
+__pycache__/
+media/
+venv/

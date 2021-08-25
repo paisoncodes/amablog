@@ -1,0 +1,71 @@
+{% load static %}
+
+<style>
+    .logo {
+        font-size: 60px; 
+        color: #333333;
+      
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #fff;
+        position: relative;
+        top: -5;
+        right: 20;
+        bottom: 5;
+        left: -20;
+    }
+
+    @media only screen and (max-width: 420px) {
+        .logo {
+            position: relative;
+            top: -5;
+            right: 20;
+            bottom: 5;
+            left: -8;
+        }
+        
+    }
+</style>
+
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                    <div class="header_content_inner d-flex flex-row align-items-center justify-content-start">
+                        <div class="logo"><a href="{% url 'home' %}"><img class="image-fluid mx-auto d-block" src="{% static 'authentication/img/blog_logo.png' %}" alt="" width="50" height="50"></a></div>
+                        <nav class="main_nav">
+                            {% if user.is_authenticated %}
+                            <ul class="d-flex flex-row align-items-start justify-content-start">
+                                <li class="active"><a href="#">Home</a></li>
+                                <li><a href="{% url 'profile' %}">Profile</a></li>
+                                <li><a href="{% url 'blog:create' %}">Create Post</a></li>
+                                <li><a href="{% url 'signout' %}">Sign out</a></li>
+                            </ul>
+                            {% else %} 
+                            <ul class="d-flex flex-row align-items-start justify-content-start">
+                                <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'signin' %}">Sign in</a></li>
+                                <li><a href="{% url 'signup' %}">Sign up</a></li>
+                            </ul>
+                            {% endif %}
+                        </nav>
+                        
+                        <!-- Hamburger -->
+                        {% include 'snippets/hamburger.html' %}
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

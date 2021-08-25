@@ -1,0 +1,158 @@
+{% load static %}
+
+
+<style type="text/css">
+    .logo {
+        font-size: 60px; 
+        display: -profilekit-box;
+        display: -profilekit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #ffffff;
+    }
+
+    .myInput{
+        width: 350px;
+        height: 43px;
+        border: 1px solid #760005;
+        border-radius: 10px;
+        padding: 0;
+    }
+    
+    .myText{
+        border: 1px solid #760005;
+        border-radius: 1em;
+        width: 350px;
+        height: 150px;
+    
+    }
+    
+    .topd{
+        margin-top: 10%;
+    }
+    
+    .topd label{
+        font-weight: initial;
+        font-size: 24px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: black
+    }
+    
+    .postBtn{
+        background-color: #760005;
+        color: white;
+        width:350px;
+        border-color: #760005;
+        border-radius: 8px;
+        margin-top: 8%;
+        margin-bottom: 8%;
+        height: 40px;
+    }
+
+    @media only screen and (max-width: 420px) {
+        .myInput{
+            width: 290px;
+            height: 43px;
+            border: 1px solid #760005;
+            border-radius: 10px;
+            padding: 0;
+        }
+        
+        .myText{
+            border: 1px solid #760005;
+            border-radius: 1em;
+            width: 290px;
+            height: 150px;
+        
+        }
+        
+        .topd{
+            margin-top: 10%;
+        }
+        
+        .topd label{
+            font-weight: initial;
+            font-size: 20px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: black
+        }
+        
+        .postBtn{
+            background-color: #760005;
+            color: white;
+            width:290px;
+            border-color: #760005;
+            border-radius: 8px;
+            margin-top: 8%;
+            margin-bottom: 8%;
+            height: 40px;
+        }
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'profile/assets/favicon.ico' %}" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'profile/css/styles.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'profile/plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/plugins/OwlCarousel2-2.2.1/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/styles/main_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/styles/responsive.css' %}">
+</head>
+
+<body>
+    <div class="super_container">
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                            <div class="header_content_inner d-flex flex-row align-items-center justify-content-start">
+                                <div class="logo">
+                                    <a href="{% url 'home' %}"><img class="image-fluid mx-auto d-block" src="{% static 'authentication/img/blog_logo.png' %}" alt="" width="50" height="50"></a>
+                                </div>
+                                <nav class="main_nav">
+                                    {% block header %}
+                                    {% endblock %}
+                                </nav>
+
+                                <!-- Hamburger -->
+                                {% include 'snippets/hamburger.html' %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Menu -->
+        {% include 'snippets/menu.html' %}
+
+        <!-- Body -->
+        {% block posts %} 
+        {% endblock %}
+    </div>
+</body>
+</html>
